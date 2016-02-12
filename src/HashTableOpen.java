@@ -7,38 +7,41 @@ public class HashTableOpen {
 
     private HashFunction function;
     private tableEntry[] hashArray;
+    private int loadFactor = DEFAULT_LOAD_FACTOR;
     private int entries = 0;
 
-    public HashTableOpen(int hashSize, HashFunction function) {
-    	this.function = function;
+    public HashTableOpen(int hashSize, int loadFactor) {
+    	this.loadFactor = loadFactor;
     	hashArray = new tableEntry[hashSize];
+    	function = new HashFunction(hashSize);
     }
 	
-    public HashTableOpen(HashFunction function) {
-    	this.function = function;
-    	hashArray = new tableEntry[DEFAULT_CAPACITY];
-    }    
-
     public HashTableOpen(int hashSize) {
        	hashArray = new tableEntry[hashSize];
+       	function = new HashFunction(hashSize);
     }
-
+    
+    public HashTableOpen(int loadFactor) {
+        this.loadFactor = loadFactor;
+    	hashArray = new tableEntry[DEFAULT_CAPACITY];
+    	function = new HashFunction(DEFAULT_CAPACITY);
+    }    
+    
 	public HashTableOpen() {
 		hashArray = new tableEntry[DEFAULT_CAPACITY];
+		function = new HashFunction(DEFAULT_CAPACITY);
 	}    
-	
-	
 	
 	
 
 	public void put(String key, String value) {
 		int index = HashFunction(key);
 
-        // If the loadfactor is not ideal resize the array
+        // if the table exceeds the loadfactor resize the table
         if(((double) (entries+1)/hashArray.length) > loadFactor){
             resizeTable();
         }
-        // If the spot at this index is already taken calculate a new index until youve found an empty one
+        // Index taken? > loop till empty spot is found
         while (hashArray[index] != null) {
             index = (index + DEFAULT_STEP_SIZE) % hashArray.length
         }
@@ -54,16 +57,18 @@ public class HashTableOpen {
 		return hashArray.length;
 	}
 
-    public int getStepSize() {
+    public int getStepSize() { 
         return DEFAULT_STEP_SIZE;
     }
     
 	private void resizeTable() {
-        HashFunction newFunction = new HashFunction(hashArray.length * 2);
-        HashTableOpen newTable = new HashTableOpen(/)
+        HashTableOpen newTable = new HashTableOpen(hashArray.length * 2);
         
         for (int i = 0; i < hashSize/2; i++) {
-            if (hash)
+            if (hashArray[i] != null) {
+                newTable.put(hashArray[i].getKey(), hashArray[i].getValue());
+            }
         }
+        hashArray = newTable.get
 	}     
         

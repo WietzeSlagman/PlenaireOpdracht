@@ -4,7 +4,7 @@ public class HashFunction {
         
     private int hashSize;
     private static final int multiplier = 31;
-    private int initial = 11;
+    private int initial = 1;
 
 
     public HashFunction(int hashSize) {
