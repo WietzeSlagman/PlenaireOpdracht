@@ -26,17 +26,21 @@ public class HashTableOpen {
 	public HashTableOpen() {
 		hashArray = new tableEntry[DEFAULT_CAPACITY];
 	}    
+	
+	
+	
+	
 
 	public void put(String key, String value) {
 		int index = HashFunction(key);
 
         // If the loadfactor is not ideal resize the array
         if(((double) (entries+1)/hashArray.length) > loadFactor){
-            resize();
+            resizeTable();
         }
         // If the spot at this index is already taken calculate a new index until youve found an empty one
         while (hashArray[index] != null) {
-            index = (index + stepSize) % hashSize
+            index = (index + DEFAULT_STEP_SIZE) % hashArray.length
         }
         hashArray[index] = new tableEntry(key,value);
         entries ++;
@@ -46,12 +50,20 @@ public class HashTableOpen {
 	// 	// return value
 	// }
 	
-	public int getSize() {
-		return hashSize;
+	public int size() {
+		return hashArray.length;
 	}
 
-	private void resize() {
-		hashSize *= 2;
-        function = new HashFunction(hashSize);
-
-        for (int i = 0; i < hashSize/2)
+    public int getStepSize() {
+        return DEFAULT_STEP_SIZE;
+    }
+    
+	private void resizeTable() {
+        HashFunction newFunction = new HashFunction(hashArray.length * 2);
+        HashTableOpen newTable = new HashTableOpen(/)
+        
+        for (int i = 0; i < hashSize/2; i++) {
+            if (hash)
+        }
+	}     
+        
