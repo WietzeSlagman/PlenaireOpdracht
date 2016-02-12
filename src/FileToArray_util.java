@@ -1,26 +1,23 @@
 
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileToArray {
- 	BufferedReader br;
- 	String path;
- 	FileReader fr;
+public class FileToArray_util {
+ 	private BufferedReader br;
+ 	private String path;
 
- 	public FileToArray(String path)  {
+ 	public FileToArray_util(String path)  {
  		this.path = path;
  	}
 
  	public String[] readLines() {
- 		List<String>  
+ 		List<String> lines = null;
  		try {
-	 		fr = new FileReader(path);
-	 		br = new BufferedReader(fr);
-	 		List<String> lines = new ArrayList<String>();
+	 		br = new BufferedReader(new FileReader(path));
+	 		lines = new ArrayList<String>();
 	 		String line = null;
 
 	 		while ((line = br.readLine()) != null) {

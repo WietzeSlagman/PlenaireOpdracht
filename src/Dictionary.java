@@ -1,42 +1,51 @@
-import java.io.*;
+
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 class Dictionary{
 
 	public static void main(String[] args){
-		
+		String file = args[0];
+		System.out.println(file);
+		String[] words = wordsList(file);
+		System.out.println(words[5]);
 	}
 
-	private Array wordsList(String file){
-		String[] wordsList = new String[10000]
+	private static String[] wordsList(String file){
+		String[] wordsList = new String[10000];
+		String[] tempWords;
 		int i = 0;
+		BufferedReader reader;
 
 		try{
-			File words = newFile(file);
+			File words = new File(file);
 			reader = new BufferedReader(new FileReader(file));
 
-			String line=;
-			while(line = reader.readLine() != null){
+			String line;
+			while((line = reader.readLine()) != null){
 				wordsList[i] = line;
 				i++;
 				if(wordsList[i] == null){
-					String[] newWordsList = new String[wordsList.length * wordsList.length]
+					tempWords = new String[wordsList.length * wordsList.length];
+					
 					for(int j = 0; j < wordsList.length; j++){
-						newWordsList[j] = wordsList[j];
+						tempWords[j] = wordsList[j];
 					}
-					wordsList = newWordsList;
+					wordsList = tempWords;
 				}
 			}
 
-		} catch(IOException e){
-			e.printStackTrace();
-		}
-		try{
 			reader.close();
-			return wordsList;
+	
 
-		} catch(IOException e){
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
+
+		return wordsList;
 	}
 
 }
