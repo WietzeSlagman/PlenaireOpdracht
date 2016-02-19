@@ -16,13 +16,6 @@ public class HashOpenSpellChecker {
 
         for(int i = 0; i < sampleList.length; i++){
             String checkedWord = wordTable.get(sampleList[i]);
-           
-            if (i < 10) {
-                System.out.println(sampleList[i]);
-                if (checkedWord != null) {
-                    System.out.println(checkedWord);
-                }
-            }
             if(sampleList[i].equals(checkedWord)){
                 correct ++;
             }

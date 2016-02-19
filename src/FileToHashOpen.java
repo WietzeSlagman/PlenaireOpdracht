@@ -25,11 +25,8 @@ public class FileToHashOpen {
     		br = new BufferedReader(new FileReader(path));
 
 			for (int i = 0; i < lineCount; i++) {
-			    String line = br.readLine();
+                String line = br.readLine();
 				hashTable.put(line, line);
-				if (line.equals("Crockford's")) {
-				    System.out.println(hashTable.get(line));
-				}
 			}
 			System.out.println(hashTable.get("Crockford's"));
     		br.close();

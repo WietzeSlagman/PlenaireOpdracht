@@ -14,8 +14,11 @@ import java.util.Arrays;
 public class BenchmarkSpellCheckers {
 
     public static void main(String[] args) {
-    	String wordListPath = "wordlist.txt";
-       	String sampleDir = "Samples";
+    	// String wordListPath = "wordlist.txt";
+     //   	String sampleDir = "Samples";
+
+        String wordListPath = "C:/Users/Bram/Dropbox/Studie/Datastructuren/PlenaireAssignment/src/wordlist.txt";
+        String sampleDir = "C:/Users/Bram/Dropbox/Studie/Datastructuren/PlenaireAssignment/Samples";
        	
     // 	FileToHashOpen wordReader = new FileToHashOpen(wordListPath);
     //  HashTableOpen wordTable = wordReader.readLines();
@@ -27,7 +30,7 @@ public class BenchmarkSpellCheckers {
    	  	File[] sampleFiles = dir.listFiles(filter);    	
     	
     	
-    // 	benchmarkArray(wordListPath, sampleFiles, sampleDir);
+    	benchmarkArray(wordListPath, sampleFiles, sampleDir);
     	
     	benchmarkHashTableOpen(wordListPath, sampleFiles, sampleDir);
 
@@ -79,10 +82,12 @@ public class BenchmarkSpellCheckers {
 	    
 	    
 	
-	    System.out.println();	
-	    System.out.println(wordTable.get("Crockford's"));	
-	    wordTable.put("Crockford's", "Crockfordtest");
-	    System.out.println(wordTable.get("Crockford's"));
+	    // System.out.println();	
+	    // System.out.println(wordTable.get("Crockford's"));	
+	    // wordTable.put("Crockford's", "Crockfordtest");
+	    // System.out.println(wordTable.get("Crockford's"));
+
+
 	   
 	   
 // 		tableEntry[] hashArray = wordTable.getHashArray();
@@ -93,30 +98,30 @@ public class BenchmarkSpellCheckers {
 // 		    }
 // 		}
         
-    //     int timeAverage = 0;
-    //     // spell check the sample files and benchmark this process
-    //     System.out.println("HashTableOpen bechmarking has started, please wait......");
-    // 	for (File f : files) {
+        int timeAverage = 0;
+        // spell check the sample files and benchmark this process
+        System.out.println("HashTableOpen bechmarking has started, please wait......");
+    	for (File f : files) {
 
-    // 		FileToArray_primitive sampleReader = new FileToArray_primitive(sampleDir + "/" + f.getName());
-    // 		String[] sampleList = sampleReader.readLines();
-    // 		HashOpenSpellChecker spellChecker = new HashOpenSpellChecker(wordTable, sampleList);
-    // 		spellChecker.spellCheck();
+    		FileToArray_primitive sampleReader = new FileToArray_primitive(sampleDir + "/" + f.getName());
+    		String[] sampleList = sampleReader.readLines();
+    		HashOpenSpellChecker spellChecker = new HashOpenSpellChecker(wordTable, sampleList);
+    		spellChecker.spellCheck();
     		
-    // 	    // get results
-    // 		int correct = spellChecker.getCorrect();
-    //         int total = sampleReader.countLines();
-    // 		long time = spellChecker.getTime();
-    //         timeAverage += time;
+    	    // get results
+    		int correct = spellChecker.getCorrect();
+            int total = sampleReader.countLines();
+    		long time = spellChecker.getTime();
+            timeAverage += time;
 
-    //         // print results
-    //         System.out.println(f.getName() + ";");
-    // 		System.out.println(correct + "/" + total + " correct");
-    // 		System.out.println("time(ns): " + time);
-    //         System.out.println("time(s): " + time / 1000000000);
+            // print results
+            System.out.println(f.getName() + ";");
+    		System.out.println(correct + "/" + total + " correct");
+    		System.out.println("time(ns): " + time);
+            System.out.println("time(s): " + time / 1000000000);
     		
-    // 		break;
-    // 	}
-    // 	System.out.println("Average time per sample file(ns): " + timeAverage);
+    		break;
+    	}
+    	System.out.println("Average time per sample file(ns): " + timeAverage);
     } 
 }
