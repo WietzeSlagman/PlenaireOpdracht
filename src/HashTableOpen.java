@@ -39,14 +39,13 @@ public class HashTableOpen {
         // if the table exceeds the loadfactor resize the table
         if(((double) (entries+1)/hashArray.length) > loadFactor){
             resizeTable();
-            System.out.println(key);
         }
     	// in case of collision add step size to index
         while (hashArray[index] != null) {
             index = (index + DEFAULT_STEP_SIZE) % hashArray.length;
         }
         hashArray[index] = new tableEntry(key,value);
-        entries ++;
+        entries++;
 	}
     
     /* Returns value hashed to by given key. */
@@ -66,14 +65,6 @@ public class HashTableOpen {
 		return null;
 		
 	}
-	
-	public int size() {
-		return hashArray.length;
-	}
-
-    public int getStepSize() { 
-        return DEFAULT_STEP_SIZE;
-    }
 
     public tableEntry[] getHashArray() {
         return hashArray;
@@ -88,8 +79,6 @@ public class HashTableOpen {
         
         for (int i = 0; i < hashArray.length; i++) {
             if (hashArray[i] != null) {
-                if (hashArray[i].getKey().equals("Crockford's")) {
-                }
                 newTable.put(hashArray[i].getKey(), hashArray[i].getValue());
             }
         }

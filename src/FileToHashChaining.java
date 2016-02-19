@@ -9,17 +9,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FileToHashOpen {
+public class FileToHashChaining {
     private BufferedReader br;
     private String path;
 
-    public FileToHashOpen(String path) {
+    public FileToHashChaining(String path) {
     	this.path = path;
     }
 
-    public HashTableOpen readLines() {
+    public HashTableChaining readLines() {
     	int lineCount = countLines();
-    	HashTableOpen hashTable = new HashTableOpen(lineCount);
+    	HashTableChaining hashTable = new HashTableChaining(lineCount);
 
     	try {
     		br = new BufferedReader(new FileReader(path));
