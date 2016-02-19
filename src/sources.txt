@@ -1,0 +1,10 @@
+./FileToHashOpen.java
+./FileToArray_util.java
+./HashTableOpen.java
+./FileToArray_primitive.java
+./ArraySpellChecker.java
+./BenchmarkSpellCheckers.java
+./tableEntry.java
+./MyFileFilter.java
+./HashOpenSpellChecker.java
+./HashFunction.java

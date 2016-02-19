@@ -1,12 +1,12 @@
 public class HashOpenSpellChecker {
     private int correct;
     private long time;
-    private hashTableOpen wordsList;
+    private HashTableOpen wordTable;
     private String[] sampleList;
 
 
-    public ArraySpellChecker(hashTableOpen wordsList, String[] sampleList){
-        this.wordsList = wordsList;
+    public HashOpenSpellChecker(HashTableOpen wordTable, String[] sampleList){
+        this.wordTable = wordTable;
         this.sampleList = sampleList;
     }
 
@@ -15,8 +15,14 @@ public class HashOpenSpellChecker {
         long startTime = System.nanoTime();
 
         for(int i = 0; i < sampleList.length; i++){
-            String checkedWord = wordsList.get(sampleList[i]);
-            
+            String checkedWord = wordTable.get(sampleList[i]);
+           
+            if (i < 10) {
+                System.out.println(sampleList[i]);
+                if (checkedWord != null) {
+                    System.out.println(checkedWord);
+                }
+            }
             if(sampleList[i].equals(checkedWord)){
                 correct ++;
             }

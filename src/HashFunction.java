@@ -11,7 +11,7 @@ public class HashFunction {
         this.hashSize = hashSize;
     }
 
-    public int calcIndex(String key) {
+    public int getIndex(String key) {
         int index = Math.abs(HashCode(key)) % hashSize;
         return index;
     }

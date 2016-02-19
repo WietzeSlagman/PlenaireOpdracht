@@ -7,10 +7,10 @@ public class HashTableOpen {
 
     private HashFunction function;
     private tableEntry[] hashArray;
-    private int loadFactor = DEFAULT_LOAD_FACTOR;
+    private double loadFactor = DEFAULT_LOAD_FACTOR;
     private int entries = 0;
 
-    public HashTableOpen(int hashSize, int loadFactor) {
+    public HashTableOpen(int hashSize, double loadFactor) {
     	this.loadFactor = loadFactor;
     	hashArray = new tableEntry[hashSize];
     	function = new HashFunction(hashSize);
@@ -21,7 +21,7 @@ public class HashTableOpen {
        	function = new HashFunction(hashSize);
     }
     
-    public HashTableOpen(int loadFactor) {
+    public HashTableOpen(double loadFactor) {
         this.loadFactor = loadFactor;
     	hashArray = new tableEntry[DEFAULT_CAPACITY];
     	function = new HashFunction(DEFAULT_CAPACITY);
@@ -33,25 +33,40 @@ public class HashTableOpen {
 	}    
 	
 	
-
 	public void put(String key, String value) {
-		int index = HashFunction(key);
+		int index = function.getIndex(key);
 
         // if the table exceeds the loadfactor resize the table
         if(((double) (entries+1)/hashArray.length) > loadFactor){
             resizeTable();
         }
-        // Index taken? > loop till empty spot is found
+    	// in case of collision add step size to index
         while (hashArray[index] != null) {
-            index = (index + DEFAULT_STEP_SIZE) % hashArray.length
+            index = (index + DEFAULT_STEP_SIZE) % hashArray.length;
         }
         hashArray[index] = new tableEntry(key,value);
         entries ++;
 	}
 
-	// public String get(String key) {
-	// 	// return value
-	// }
+    /* Returns value hashed to by given key. */
+	public String get(String key) {
+	    
+		int index = function.getIndex(key);
+		
+		while (hashArray[index] != null) {
+    		
+    		if (hashArray[index].getKey().equals(key)) {
+    		    System.out.println(index);
+    		    return hashArray[index].getValue();
+    		}
+    		
+    		// in case of collision add step size to index
+    		index = (index + DEFAULT_STEP_SIZE) % hashArray.length;
+    	}
+    	System.out.println(index);
+		return null;
+		
+	}
 	
 	public int size() {
 		return hashArray.length;
@@ -60,15 +75,21 @@ public class HashTableOpen {
     public int getStepSize() { 
         return DEFAULT_STEP_SIZE;
     }
-    
+
+    public tableEntry[] getHashArray() {
+        return hashArray;
+    }
+        
 	private void resizeTable() {
+	    System.out.println("Resizing...");
         HashTableOpen newTable = new HashTableOpen(hashArray.length * 2);
         
-        for (int i = 0; i < hashSize/2; i++) {
+        for (int i = 0; i < hashArray.length/2; i++) {
             if (hashArray[i] != null) {
                 newTable.put(hashArray[i].getKey(), hashArray[i].getValue());
             }
         }
-        hashArray = newTable.get
+        hashArray = newTable.getHashArray();
 	}     
-        
+}
+
