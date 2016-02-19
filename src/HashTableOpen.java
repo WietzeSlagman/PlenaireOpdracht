@@ -1,4 +1,9 @@
-
+/*
+ * Datastructuren Plenaire Assignment
+ * By: Wietze Slagman(10165622) & Bram Smit(1066656)
+ **************************************************
+ * This hashtable class implements the method of linear probing
+ */
 
 public class HashTableOpen {
     private static final int DEFAULT_CAPACITY = 11;
@@ -6,29 +11,29 @@ public class HashTableOpen {
     private static final double DEFAULT_LOAD_FACTOR = 0.75;
 
     private HashFunction function;
-    private tableEntry[] hashArray;
+    private TableEntry[] hashArray;
     private double loadFactor = DEFAULT_LOAD_FACTOR;
     private int entries = 0;
 
     public HashTableOpen(int hashSize, double loadFactor) {
     	this.loadFactor = loadFactor;
-    	hashArray = new tableEntry[hashSize];
+    	hashArray = new TableEntry[hashSize];
     	function = new HashFunction(hashSize);
     }
 	
     public HashTableOpen(int hashSize) {
-       	hashArray = new tableEntry[hashSize];
+       	hashArray = new TableEntry[hashSize];
        	function = new HashFunction(hashSize);
     }
     
     public HashTableOpen(double loadFactor) {
         this.loadFactor = loadFactor;
-    	hashArray = new tableEntry[DEFAULT_CAPACITY];
+    	hashArray = new TableEntry[DEFAULT_CAPACITY];
     	function = new HashFunction(DEFAULT_CAPACITY);
     }    
     
 	public HashTableOpen() {
-		hashArray = new tableEntry[DEFAULT_CAPACITY];
+		hashArray = new TableEntry[DEFAULT_CAPACITY];
 		function = new HashFunction(DEFAULT_CAPACITY);
 	}    
 	
@@ -44,7 +49,7 @@ public class HashTableOpen {
         while (hashArray[index] != null) {
             index = (index + DEFAULT_STEP_SIZE) % hashArray.length;
         }
-        hashArray[index] = new tableEntry(key,value);
+        hashArray[index] = new TableEntry(key,value);
         entries++;
 	}
     
@@ -66,14 +71,14 @@ public class HashTableOpen {
 		
 	}
 
-    public tableEntry[] getHashArray() {
+    public TableEntry[] getHashArray() {
         return hashArray;
     }
 
     public HashFunction getFunction() {
         return function;
     }
-        
+
 	private void resizeTable() {
         HashTableOpen newTable = new HashTableOpen(hashArray.length * 2);
         

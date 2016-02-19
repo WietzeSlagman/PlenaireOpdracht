@@ -1,14 +1,43 @@
+/*
+ * Course Datastructures UvA Amsterdam february 2016 
+ * Plenaire Assignment
+ * Made by:
+ *  - Wietze Slagman    10165622
+ *  - Bram Smit         10666656
+ *
+ ******************************************************************************* 
+ * BenchmarkSpellCheckers class;
+ * Spell checks the sample files against a dictionary implemented with different datastructures;
+ *      - Array
+ *      - HashTable with linear probing
+ *      - HashTable with collision chaining
+ * 
+ * To initialize the dictionary 3 FileTo[Datastructure] classes are being used;
+ *      -FileToArray.java
+ *      -FileToHashOpen.java
+ *      -FileToHashChaining.java
+ *
+ * The spell checks are then performed by 3 [Datastructure]SpellChecker classes;
+ *      - ArraySpellChecker.java
+ *      - HashOpenSpellChecker.java
+ *      - HashChainingSpellChecker.java
+ * 
+ * The hash tables are implemented without using the java.util library;
+ *      - HashTable with linear probing :
+ *          - HashTableOpen.java
+ *          - TableEntry.java
+ *      - HashTable with collision chaining :
+ *          - HashTableChaining.java
+ *          - LinkedNode.java
+ *      - HashFunction.java
+ *
+ * For results and conclusions refer to the report submitted with this assignment.
+ */
 
 
 import java.io.File;
 import java.io.FilenameFilter;
 
-/*
- * 08/02/2016
- * BenchmarkArray class;
- * Will match sample files with a wordlist read in to an array using one of the FileToArray classes.
- * 
- */
 
 public class BenchmarkSpellCheckers {
 
@@ -16,10 +45,6 @@ public class BenchmarkSpellCheckers {
     	String wordListPath = "wordlist.txt";
        	String sampleDir = "Samples";
 
-        // String wordListPath = "C:/Users/Bram/Dropbox/Studie/Datastructuren/PlenaireAssignment/src/wordlist.txt";
-        // String sampleDir = "C:/Users/Bram/Dropbox/Studie/Datastructuren/PlenaireAssignment/Samples";
-       	
-    
         //  apply file filter matching "sample_*" files
        	File dir = new File(sampleDir);
     	FilenameFilter filter = new MyFileFilter();
@@ -37,14 +62,14 @@ public class BenchmarkSpellCheckers {
     private static void benchmarkArray(String wordListPath, File[] sampleFiles, String sampleDir) {
     
     	// Read in wordList
-    	FileToArray_primitive reader = new FileToArray_primitive(wordListPath);
+    	FileToArray reader = new FileToArray(wordListPath);
     	String[] wordList = reader.readLines();
         
         long timeAverage = 0;
         // spell check the sample files and benchmark this process
     	System.out.println("Array bechmarking has started, please wait......");
     	for (File f : sampleFiles) {
-    		reader = new FileToArray_primitive(sampleDir + "/" + f.getName());
+    		reader = new FileToArray(sampleDir + "/" + f.getName());
     		String[] sampleList = reader.readLines();
     		ArraySpellChecker spellChecker = new ArraySpellChecker(wordList, sampleList);
     		spellChecker.spellCheck();
@@ -61,11 +86,13 @@ public class BenchmarkSpellCheckers {
     		System.out.println("time(ns): " + time);
             System.out.println("time(s): " + time / 1000000000);
     		
-    		break;
-    	}
-    	System.out.println("Average time per sample file(ns): " + timeAverage);
-    }
+            // optional break to benchmark just one file		
+    // 		break;
     
+    
+    	}
+    	System.out.println("Average time per sample file(ns): " + timeAverage / sampleFiles.length);
+    }
     
     private static void benchmarkHashTableOpen(String wordListPath, File[] sampleFiles, String sampleDir) {
     	// Read in wordList
@@ -77,7 +104,7 @@ public class BenchmarkSpellCheckers {
         System.out.println("HashTableOpen bechmarking has started, please wait......");
     	for (File f : sampleFiles) {
 
-    		FileToArray_primitive sampleReader = new FileToArray_primitive(sampleDir + "/" + f.getName());
+    		FileToArray sampleReader = new FileToArray(sampleDir + "/" + f.getName());
     		String[] sampleList = sampleReader.readLines();
     		HashOpenSpellChecker spellChecker = new HashOpenSpellChecker(wordTable, sampleList);
     		spellChecker.spellCheck();
@@ -93,10 +120,11 @@ public class BenchmarkSpellCheckers {
     		System.out.println(correct + "/" + total + " correct");
     		System.out.println("time(ns): " + time);
             System.out.println("time(s): " + time / 1000000000);
-    		
-    		break;
+            
+            // optional break to benchmark just one file		
+    // 		break;
     	}
-    	System.out.println("Average time per sample file(ns): " + timeAverage);
+    	System.out.println("Average time per sample file(ns): " + timeAverage / sampleFiles.length);
     } 
     
     
@@ -110,7 +138,7 @@ public class BenchmarkSpellCheckers {
         System.out.println("HashTableChaining bechmarking has started, please wait......");
     	for (File f : sampleFiles) {
 
-    		FileToArray_primitive sampleReader = new FileToArray_primitive(sampleDir + "/" + f.getName());
+    		FileToArray sampleReader = new FileToArray(sampleDir + "/" + f.getName());
     		String[] sampleList = sampleReader.readLines();
     		HashChainingSpellChecker spellChecker = new HashChainingSpellChecker(wordTable, sampleList);
     		spellChecker.spellCheck();
@@ -127,8 +155,9 @@ public class BenchmarkSpellCheckers {
     		System.out.println("time(ns): " + time);
             System.out.println("time(s): " + time / 1000000000);
     		
-    		break;
+            // optional break to benchmark just one file		
+    // 		break;
     	}
-    	System.out.println("Average time per sample file(ns): " + timeAverage);
+    	System.out.println("Average time per sample file(ns): " + timeAverage / sampleFiles.length);
     } 
 }

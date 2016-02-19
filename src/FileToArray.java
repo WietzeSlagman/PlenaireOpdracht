@@ -1,24 +1,19 @@
 /*
- * 05/02/2016
- * FileToArray_primitive class;
- * Is able to read words from a corpus and save these is an array.
- * 
- *
- *
- *
- *
- *
+ * Datastructuren Plenaire Assignment
+ * By: Wietze Slagman(10165622) & Bram Smit(1066656)
+ **************************************************
+ * FileToArray creates a dictionary using an array
  */
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FileToArray_primitive {
+public class FileToArray {
     private BufferedReader br;
     private String path;
 
-    public FileToArray_primitive (String path) {
+    public FileToArray (String path) {
     	this.path = path;
     }
 

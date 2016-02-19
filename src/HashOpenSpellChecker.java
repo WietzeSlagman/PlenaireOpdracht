@@ -1,3 +1,10 @@
+/*
+ * Datastructuren Plenaire Assignment
+ * By: Wietze Slagman(10165622) & Bram Smit(1066656)
+ **************************************************
+ * HashOpenSpellChecker spell checks words from a sample file against the dictionary 
+ */
+
 public class HashOpenSpellChecker {
     private int correct;
     private long time;

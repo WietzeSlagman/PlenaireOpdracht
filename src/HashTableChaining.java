@@ -1,4 +1,9 @@
-
+/*
+ * Datastructuren Plenaire Assignment
+ * By: Wietze Slagman(10165622) & Bram Smit(1066656)
+ **************************************************
+ * This hashtable class implements the method of collision chaining
+ */
 
 public class HashTableChaining {
     private static final int DEFAULT_CAPACITY = 11;
@@ -60,7 +65,5 @@ public class HashTableChaining {
     public LinkedNode[] getHashArray() {
         return hashArray;
     }
-
-           
 }
 

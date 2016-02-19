@@ -1,11 +1,10 @@
 ./FileToHashOpen.java
-./FileToArray_util.java
 ./HashTableChaining.java
 ./HashTableOpen.java
-./FileToArray_primitive.java
+./FileToArray.java
 ./ArraySpellChecker.java
 ./BenchmarkSpellCheckers.java
-./tableEntry.java
+./TableEntry.java
 ./MyFileFilter.java
 ./LinkedNode.java
 ./HashOpenSpellChecker.java

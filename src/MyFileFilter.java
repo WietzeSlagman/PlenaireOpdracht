@@ -1,4 +1,9 @@
-
+/*
+ * Datastructuren Plenaire Assignment
+ * By: Wietze Slagman(10165622) & Bram Smit(1066656)
+ **************************************************
+ * Overrides java.io.FileNameFilter to ensure correct sample files
+ */
 
 import java.io.File;
 import java.io.FilenameFilter;

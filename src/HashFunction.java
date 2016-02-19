@@ -1,4 +1,7 @@
-
+/*
+ * Datastructuren Plenaire Assignment
+ * By: Wietze Slagman(10165622) & Bram Smit(1066656)
+ */
 
 public class HashFunction {
         

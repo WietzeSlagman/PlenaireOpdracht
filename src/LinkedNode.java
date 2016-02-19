@@ -1,5 +1,5 @@
  /*
- * Datastructuren Assignment 2
+ * Datastructuren Plenaire Assignment
  * By: Wietze Slagman(10165622) & Bram Smit(1066656)
  **************************************************
  * our own implementation of linkedlist only containing the bare necessities for this assignment
