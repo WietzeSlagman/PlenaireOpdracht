@@ -15,9 +15,6 @@ public class ArraySpellChecker{
         long startTime = System.nanoTime();
 
         for(int i = 0; i < sampleList.length; i++){
-            if (i < 10) {
-                System.out.println(sampleList[i]);
-            }
             for(int j = 0; j < wordsList.length; j++){
                 
                 if(sampleList[i].equals(wordsList[j])){
