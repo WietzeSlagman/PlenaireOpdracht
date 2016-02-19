@@ -76,7 +76,7 @@ public class BenchmarkSpellCheckers {
     	// Read in wordList
     	FileToHashOpen wordReader = new FileToHashOpen(wordListPath);
         HashTableOpen wordTable = wordReader.readLines();
-	
+	    
 	    
 	
 	    System.out.println();	

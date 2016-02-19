@@ -39,6 +39,7 @@ public class HashTableOpen {
         // if the table exceeds the loadfactor resize the table
         if(((double) (entries+1)/hashArray.length) > loadFactor){
             resizeTable();
+            System.out.println(key);
         }
     	// in case of collision add step size to index
         while (hashArray[index] != null) {
@@ -47,7 +48,7 @@ public class HashTableOpen {
         hashArray[index] = new tableEntry(key,value);
         entries ++;
 	}
-
+    
     /* Returns value hashed to by given key. */
 	public String get(String key) {
 	    
@@ -84,7 +85,7 @@ public class HashTableOpen {
 	    System.out.println("Resizing...");
         HashTableOpen newTable = new HashTableOpen(hashArray.length * 2);
         
-        for (int i = 0; i < hashArray.length/2; i++) {
+        for (int i = 0; i < hashArray.length; i++) {
             if (hashArray[i] != null) {
                 newTable.put(hashArray[i].getKey(), hashArray[i].getValue());
             }

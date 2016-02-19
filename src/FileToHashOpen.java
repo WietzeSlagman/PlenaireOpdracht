@@ -31,6 +31,7 @@ public class FileToHashOpen {
 				    System.out.println(hashTable.get(line));
 				}
 			}
+			System.out.println(hashTable.get("Crockford's"));
     		br.close();
     	} catch (IOException e) {
     		e.printStackTrace();
